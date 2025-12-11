@@ -15,11 +15,11 @@ Pc = p0*g*R; % Pressure at center of star (assuming constant density. May need t
 g=G*M/R^2; % ?? This star's gravitational constant ??
 
 % our equilibrium values
-z0=42;
+z0=linspace(0,R,10);
 
 p0=pfac*(1-(z0/R)^2); % for example, doesn't need to be this
 
-P0=bvp4c(P0ode,P0bc,solinit);
+P0=bvp4c(z0,[p0,g,R,Pc]);
 T0=P0*mu*mp/p0/kb;
 
 zinit = ;

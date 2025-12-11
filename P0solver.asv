@@ -1,20 +1,35 @@
-function P0=P0solver(z,P,constants)
+function P0sol=P0solver(z,P,constants)
+% Main function
 
-p0=constants(1);
-g=constants(2);
-R=constants(3);
-Pc=constants(4)
-Pa=
-dPdz=P0ode(z,P,p0,g);
+    p0=constants(1); % density, obtained through other means
+    g=constants(2); % gravitational constant for this star (assumed constant)
+    R=constants(3); % Radius of star
+    Pc=constants(4); % Pressure at center
+    
+    guess = bvpinit(z,@P0guess);
+    P0sol = bvp4c(@(z,P) P0ode(z,P,p0,g),@P0bc,guess);
 
 end
 
 
 function dPdz = P0ode(z,P,p0,g)
+% Creates the ode
 
-dPdz=-p0*g;
+    dPdz=-p0*g; % ?? p0 could be a function of z here ??
 
 end
 
 
 function res = P0bc(Pa,Pb)
+% Creates the BCs
+    res = [Pa-Pc; Pb-0];
+    
+end
+
+
+function guess = P0guess(z)
+% Our initial guess for it to start from
+
+    guess=Pc*(1-z/R);
+
+end
