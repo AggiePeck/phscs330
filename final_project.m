@@ -14,19 +14,17 @@ pfac=42; % ?? constant for density ??
 Pc = p0*g*R; % Pressure at center of star (assuming constant density. May need to do an integration instead)
 g=G*M/R^2; % ?? This star's gravitational constant ??
 
-% 
-zmesh=linspace(0,R,10);
-
+% Our knot values (for the purposes of solving perturbation equations)
+z0=linspace(0,R,10);
 p0=@(z) pfac*(1-(z/R)^2); % ?? This function is just one possible ??
+P0=P0solver(z0,p0,[g,R,Pc]);
 
-P0=P0solver(zmesh,p0,[g,R,Pc]);
 T0=P0*mu*mp/p0/kb;
 
-zinit = ;
 pinit = ;
+zinit = ;
 Pinit = ;
 
-u0 = [zinit, pinit, Pinit];
-
+u0 = [ pinit, zinit, Pinit];
 
 [t,u]=ode45(@(t,u) rhs_spherical(t,u,p0,P0),tspan,u0);
