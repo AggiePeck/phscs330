@@ -1,4 +1,4 @@
-function res = rhs_spherical(t,u)
+function res = rhs_spherical(t,u,p0,P0)
 %given a constant z, finds the functions with respect to t
 % u = [zinit, pinit, Pinit]
 
