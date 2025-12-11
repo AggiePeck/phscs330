@@ -5,7 +5,7 @@ function equi = rhs_eq(z,u)
 p0=u(1);
 P0=u(2);
 
-dp0=???;
+dp0=;
 dP0=-p0*g;
 
 equi = [p0; P0; dp0; dP0];

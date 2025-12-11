@@ -6,8 +6,8 @@ close all;
 T0=5000; % observed temperature of star
 R=1000; % radius of star
 mu=42; % gas density constant??
-kb=???; % ???
-mp=???; % ???
+kb=; % ???
+mp=; % ???
 pfac=42; % constant for density
 
 % our equilibrium values
