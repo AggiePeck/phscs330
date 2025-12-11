@@ -6,7 +6,7 @@ kb=1.3806504*10^(-23); % Boltzmann's constant
 mp=1.672621637*10^(-27); % Proton mass
 c=2.99792458*10^8; % Speed of light
 
-% Star-specific constants
+% Star-specific constants (can change them)
 R=1000; % radius of star
 Teff=5000; % Effective temperature (at r=R)
 mu=42; % ?? gas density constant ??
@@ -17,13 +17,14 @@ g=G*M/R^2; % ?? This star's gravitational constant ??
 % Our knot values (for the purposes of solving perturbation equations)
 z0=linspace(0,R,10);
 p0=@(z) pfac*(1-(z/R)^2); % ?? This function is just one possible ??
-P0=P0solver(z0,p0,[g,R,Pc]);
+P0vec=P0solver(z0,p0,[g,R,Pc]);
+P0=@(z) interp1(z0,P0vec,z);
 
 T0=P0*mu*mp/p0/kb;
 
 for zinit=z0
 % solves the time derivative at various values of z
-
+    tspan = [0 100];
     pinit = ; % ??
     Pinit = ; % ??
     u0 = [ pinit, zinit, Pinit];
