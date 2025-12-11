@@ -21,10 +21,26 @@ P0=P0solver(z0,p0,[g,R,Pc]);
 
 T0=P0*mu*mp/p0/kb;
 
-pinit = ;
-zinit = ;
-Pinit = ;
+for zinit=z0
+% solves the time derivative at various values of z
 
-u0 = [ pinit, zinit, Pinit];
+    pinit = ; % ??
+    Pinit = ; % ??
+    u0 = [ pinit, zinit, Pinit];
 
-[t,u]=ode45(@(t,u) rhs_spherical(t,u,p0,P0),tspan,u0);
+    [t,u]=ode45(@(t,u) rhs_spherical(t,u,p0,P0),tspan,u0);
+    
+    p=u(:,1);
+    z=u(:,2);
+    P=u(:,3);
+
+    
+    
+end
+
+% Put it on a sphere
+    n=50;
+    [X,Y,Z]=sphere(n);
+    X=X*R; % scale to match star radius
+    Y=Y*R;
+    Z=Z*R;
