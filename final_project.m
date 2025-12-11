@@ -14,12 +14,12 @@ pfac=42; % ?? constant for density ??
 Pc = p0*g*R; % Pressure at center of star (assuming constant density. May need to do an integration instead)
 g=G*M/R^2; % ?? This star's gravitational constant ??
 
-% our equilibrium values
-z0=linspace(0,R,10);
+% 
+zmesh=linspace(0,R,10);
 
-p0=pfac*(1-(z0/R)^2); % for example, doesn't need to be this
+p0=@(z) pfac*(1-(z/R)^2); % ?? This function is just one possible ??
 
-P0=bvp4c(z0,[p0,g,R,Pc]);
+P0=P0solver(zmesh,p0,[g,R,Pc]);
 T0=P0*mu*mp/p0/kb;
 
 zinit = ;
