@@ -1,7 +1,7 @@
 clear; clc; close all;
 
 % Which rho index you want to animate at (80 max)
-startrho = 79;
+startrho = 80;
 
 %% build Sun background (rho0(r), P0(r))
 
