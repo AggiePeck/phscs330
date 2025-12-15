@@ -1,5 +1,8 @@
 clear; clc; close all;
 
+% Which rho index you want to animate at (80 max)
+startrho = 79;
+
 %% build Sun background (rho0(r), P0(r))
 
 useSolarFile = false;   % We'd set true if file for data were present, but not right now
@@ -92,5 +95,5 @@ xlabel('r/R_\odot'); ylabel('t'); colorbar;
 title('P(r,t)');
 caxis([0.9*min(P0) 1.1*max(P0)]);
 %% simple pulsating-sphere view using surface density
-rho_surf = rho(:,end);
-sphere_plot(rho_surf(end));
+rho_surf = rho(:,startrho);
+sphere_plot(rho_surf);

@@ -1,4 +1,4 @@
-function sphere_plot(rho_mean)
+function sphere_plot(rho_surf)
 % visualize spherically symmetric density on a sphere
 
 nTheta = 40;
@@ -13,13 +13,26 @@ X = R.*sin(TH).*cos(PH);
 Y = R.*sin(TH).*sin(PH);
 Z = R.*cos(TH);
 
-rho_ang = rho_mean * ones(size(X));  % same density everywhere
-
 figure;
-surf(X,Y,Z,rho_ang,'EdgeColor','none');
+C0=rho_surf(1)*ones(size(X));
+h=surf(X,Y,Z,C0,'EdgeColor','none');
 axis equal;
 xlabel('x'); ylabel('y'); zlabel('z');
 colormap(turbo);
 colorbar;
-title('Spherically symmetric density');
+
+
+cmin = min(rho_surf);
+cmax=max(rho_surf);
+clim([cmin,cmax]);
+
+for i=1:length(rho_surf)
+
+    
+    
+    
+    title('Spherically symmetric density');
+    h.CData = rho_surf(i) * ones(size(h.CData));
+    pause(.01)
+end
 end
