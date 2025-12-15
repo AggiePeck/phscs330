@@ -93,5 +93,4 @@ title('P(r,t)');
 caxis([0.9*min(P0) 1.1*max(P0)]);
 %% simple pulsating-sphere view using surface density
 rho_surf = rho(:,end);
-figure;
 sphere_plot(rho_surf(end));
