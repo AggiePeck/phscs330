@@ -1,4 +1,5 @@
 clear; clc; close all;
+%% A project by Aggie Peck and Mason Rohner
 
 % Which rho index you want to animate at (80 max)
 startrho = 80;
